@@ -136,12 +136,19 @@ export const removeEvenNumbers = (numberArr) => {
 
 export const generateAverage = (numberArr) => {
   let average = 0
+  // Empty array check
+  if (numberArr.length === 0) {
+    return average;
+  } 
+  else {
   for (let i = 0; i < numberArr.length; ++i){
     average += numberArr[i] / numberArr.length
     }
+
     average = +average.toFixed(0)
-  
+  };
   return average;
+  
 };
 
 /**
@@ -225,5 +232,21 @@ export const generateHighscores = (playersArr, scoresArr) => {
 // };
 
 export const encryptString = (toEncrypt) => {
-  return;
+  if (toEncrypt) {
+    let arr1 = [];
+    let arr2 = [];
+    let arr3 = [];
+
+    for (let i = 0; i < toEncrypt.length; i++) {
+      arr1.push(toEncrypt[i]);
+      i++;
+      arr2.push(toEncrypt[i]);
+      i++;
+      arr3.push(toEncrypt[i]);
+    }
+
+    return arr1.join("") + arr2.join("") + arr3.join("");
+  } else {
+    return toEncrypt;
+  }
 };

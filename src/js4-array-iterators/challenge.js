@@ -20,9 +20,15 @@
  * @param {boolean[]} booleanArr [true, true, false, false, true]
  * @return {boolean[]} [true, true, true]
  */
+ 
 
-export const removeFalseValues = (booleanArr) => {
-  return;
+export const removeFalseValues = (booleanArr) => { 
+
+  const allTrue = booleanArr.filter((booleanArr) => { 
+    return booleanArr===true;
+  })
+
+  return allTrue;
 };
 
 /**
@@ -34,7 +40,9 @@ export const removeFalseValues = (booleanArr) => {
  */
 
 export const createPercentageList = (numbersArr) => {
-  return;
+
+  const percentArr = numbersArr.map((num) => {return (num*100).toString()+"%"})
+  return percentArr;
 };
 
 /**
@@ -47,7 +55,9 @@ export const createPercentageList = (numbersArr) => {
  */
 
 export const createListOfPoessessions = (possessionsArr, name) => {
-  return;
+
+  const namePosessions = possessionsArr.map((item) => {return (`${name} ${item}`)})
+  return namePosessions;
 };
 
 /**
@@ -72,7 +82,10 @@ export const createListOfPoessessions = (possessionsArr, name) => {
  */
 
 export const convertStringToNumbersArray = (numberString) => {
-  return;
+  const arrayOfStr = (numberString.split("+"))
+  const turnToNum = arrayOfStr.map((i) => {return +i})
+  return turnToNum;
+  
 };
 
 /**
@@ -84,8 +97,16 @@ export const convertStringToNumbersArray = (numberString) => {
  */
 
 export const createOddEvenArray = (numberString) => {
-  return;
-};
+  const arrayOfStr = numberString.split("+");
+    
+    const oddOrEven = arrayOfStr.map((i) => {
+      
+      return (i%2 == 0? i = "even": i = "odd")
+      })
+    
+
+  return oddOrEven;
+}
 
 /**
  * A function that takes an array of book titles and a search term.
@@ -97,8 +118,16 @@ export const createOddEvenArray = (numberString) => {
  */
 
 export const filterBooksBySearch = (booksArr, searchTerm) => {
-  return;
-};
+
+  const book_search = booksArr.filter((item) => {
+    if (item.includes(searchTerm)){  
+      return item
+    }
+    
+  })
+  return book_search
+}
+  ;
 
 /**
  * Advanced Challenges
@@ -117,12 +146,15 @@ export const filterBooksBySearch = (booksArr, searchTerm) => {
  */
 
 export const formatStringArray = (stringArr) => {
-  const cleanedArr = stringArr.forEach((string) => {
+  const cleanedArr = stringArr.map((string) => {
     const cleanStr = string.trim().toLowerCase();
+
+    console.log(cleanStr) //should be here
+
     return cleanStr;
   });
 
-  // console.log(???)
+  //console.log(cleanStr) comes as undefined as it can't ba accessed from outside the function, should go inside the function
 
   const joinedString = cleanedArr.join("+");
 
@@ -143,7 +175,30 @@ export const formatStringArray = (stringArr) => {
  */
 
 export const formatString = (string) => {
-  return;
+
+  const newStr = string.match(/[A-Za-z]/g)
+// console.log(newStr)
+
+if (newStr){
+  let count = 0
+
+  const casedStr = newStr.reduce((acc, letter) => {
+    
+    const upOrLow = count%2 == 0 ? letter = letter.toUpperCase():letter = letter.toLocaleLowerCase()
+    count +=1
+    acc.push(upOrLow)
+    return acc
+
+  }, [])
+  
+  return casedStr
+}
+else{
+  const casedStr = [];
+  console.log(casedStr)
+  return casedStr
+}
+
 };
 
 /**
@@ -170,5 +225,25 @@ export const formatString = (string) => {
  */
 
 export const fizzBuzz = (mixedArray) => {
-  return;
+  const onlyNumbers = mixedArray.filter((item) => 
+    item == +item && item > 0)
+    
+  // console.log(onlyNumbers)
+
+  const fiBu = onlyNumbers.map((num) =>{
+    if(num % 15 == 0){
+      return num = "FizzBuzz"
+      }
+    else if (num % 5 == 0){
+      return num = "Buzz"
+    }
+    else if (num % 3 == 0){
+      return num = "Fizz"
+    }
+    else {
+      return num.toString()
+    }
+
+  })
+  return fiBu
 };
